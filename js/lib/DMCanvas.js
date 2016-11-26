@@ -35,7 +35,7 @@ define(['DMShapeDrawer', 'DMShapeSelector', 'DMRectangle', 'DMCircle', 'DMMouseC
     if(shapeClicked !== undefined) {
       setActiveShape(shapeClicked);
     }
-    buildCanvas();
+    buildCanvas(new DMShapeDrawer(_ctx), new DMShapeSelector(_shapes[_activeShape], _ctx));
   });
 
   /**
@@ -50,22 +50,19 @@ define(['DMShapeDrawer', 'DMShapeSelector', 'DMRectangle', 'DMCircle', 'DMMouseC
     if(keyCode==39) {
       shape._beginX +=1;
       _shapes[_activeShape] = shape;
-      buildCanvas();
     } else if(keyCode==37) {
       shape._beginX -=1;
       _shapes[_activeShape] = shape;
-      buildCanvas();
       //up
     } else if(keyCode==38) {
       shape._beginY -=1;
       _shapes[_activeShape] = shape;
-      buildCanvas();
       //down
     } else if(keyCode==40) {
       shape._beginY +=1;
       _shapes[_activeShape] = shape;
-      buildCanvas();
     }
+    buildCanvas(new DMShapeDrawer(_ctx), new DMShapeSelector(_shapes[_activeShape], _ctx));
   }, true);
 
   /**
@@ -112,10 +109,8 @@ define(['DMShapeDrawer', 'DMShapeSelector', 'DMRectangle', 'DMCircle', 'DMMouseC
    * coordinates.
    * @return {Boolean} true returns true
    */
-  var buildCanvas = function() {
+  var buildCanvas = function(shapeDrawer, shapeSelector) {
     colorCanvas(_canvasColor);
-    var shapeDrawer = new DMShapeDrawer(_ctx);
-    var shapeSelector = new DMShapeSelector(_shapes[_activeShape], _ctx);
     shapeSelector.outlineShape();
     shapeDrawer.drawAllShapes(_shapes);
     return true;
@@ -130,13 +125,18 @@ define(['DMShapeDrawer', 'DMShapeSelector', 'DMRectangle', 'DMCircle', 'DMMouseC
     _activeShape = key;
   };
 
+  var getCanvasContext = function() {
+    return _ctx;
+  };
+
   return {
     setShapes: setShapes,
     getShapes: getShapes,
     addShape: addShape,
     buildCanvas: buildCanvas,
     colorCanvas: colorCanvas,
-    setActiveShape: setActiveShape
+    setActiveShape: setActiveShape,
+    getCanvasContext: getCanvasContext
 
   };
 

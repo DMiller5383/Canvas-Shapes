@@ -7,7 +7,7 @@ requirejs.config({
   baseUrl: 'js/lib'
 });
 
-require(['DMCanvas', 'DMShapeFactory'], function(DMCanvas, DMShapeFactory){
+require(['DMCanvas', 'DMShapeFactory', 'DMShapeDrawer', 'DMShapeSelector'], function(DMCanvas, DMShapeFactory, DMShapeDrawer, DMShapeSelector){
 
   args = {beginX: 35, beginY: 400, width: 100, color: '#123456'};
   var rect = DMShapeFactory.buildShape(args);
@@ -17,6 +17,11 @@ require(['DMCanvas', 'DMShapeFactory'], function(DMCanvas, DMShapeFactory){
   var circle = DMShapeFactory.buildShape(args);
   DMCanvas.setShapes([rect, rect2, circle]);
   DMCanvas.setActiveShape(0);
-  DMCanvas.buildCanvas();
+  var ctx = DMCanvas.getCanvasContext();
+  var shapeDrawer = new DMShapeDrawer(ctx);
+  var shapes = DMCanvas.getShapes();
+  var activeShape = shapes[0];
+  var shapeSelector = new DMShapeSelector(activeShape, ctx);
+  DMCanvas.buildCanvas(shapeDrawer, shapeSelector);
 
 });
