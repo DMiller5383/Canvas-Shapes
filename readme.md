@@ -17,4 +17,6 @@ The DMShape class is a parent class that basically holds the data of the shape. 
 
 While these classes can be instantiated on their own, there is a factory class called DMShapeFactory.  This is a static class.  By passing in a set of arguments to the buildShape method, the factory will determine what kind of shape should be generated.  
 
-This program also makes use of requirejs.  This is a AMD module loading library.  It greatly simplifies the process of including file dependencies.  For more information go to [requirejs.org](http://www.requirejs.org).
+The shapes themselves are drawn using the DMShapeDrawer class.  This class takes an array of shapes, iterates through each of those shapes and draws them appropriately.
+
+This programs makes use of requirejs.  This is a AMD (Asynchronous Module Definitiion) loading library.  It greatly simplifies the process of including file dependencies while improving the speed and performance of the application.  For more information go to [requirejs.org](http://www.requirejs.org).
