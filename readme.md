@@ -19,4 +19,4 @@ While these classes can be instantiated on their own, there is a factory class c
 
 The shapes themselves are drawn using the DMShapeDrawer class.  This class takes an array of shapes, iterates through each of those shapes and draws them appropriately.
 
-This programs makes use of requirejs.  This is a AMD (Asynchronous Module Definitiion) loading library.  It greatly simplifies the process of including file dependencies while improving the speed and performance of the application.  For more information go to [requirejs.org](http://www.requirejs.org).
+This programs makes use of requirejs.  This is a AMD (Asynchronous Module Definitiion) loading library. This library greatly simplifies the process of including file dependencies while improving the speed and performance of the application.  For more information go to [requirejs.org](http://www.requirejs.org).
